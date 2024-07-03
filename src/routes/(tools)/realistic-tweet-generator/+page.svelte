@@ -64,8 +64,7 @@
     },
   ];
 </script>
-<div
-  class="card gap-16 items-center mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 overflow-hidden rounded-lg"
+<div class="card gap-16 items-center mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 overflow-hidden rounded-lg"
 >
   <div class="container">
     <div class="side-container">
@@ -510,7 +509,7 @@
 <!--card-->
 
 <div class="card-doc mx-auto max-w-screen-xl rounded-lg shadow-lg bg-white p-8">
-  <h1 class="text-3xl font-bold mb-10 text-center">{pagetitle}</h1>
+  <h1 class="text-3xl font-bold mb-10 mt-10 text-center">{pagetitle}</h1>
   <div class="documentation">
     {#each steps as { title, content, image, alignLeft }, i}
       <div
@@ -1112,4 +1111,22 @@
     list-style-type: disc;
     margin-left: 20px;
   }
+  .card {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 0;
+    height: auto;
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 5px 5px 10px rgba(126, 125, 125, 0.169);
+}
+
+.card-doc {
+    margin-top: -20px;
+    padding-top: 40px;
+    border-radius: 0 0 10px 10px; 
+    background-color: white;
+    box-shadow: 5px 5px 10px rgba(126, 125, 125, 0.169); 
+}
+
 </style>
