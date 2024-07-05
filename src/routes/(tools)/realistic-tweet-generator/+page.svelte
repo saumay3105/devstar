@@ -7,6 +7,7 @@
   />
 </head>
 <script>
+  import html2canvas from 'html2canvas';
   let pagetitle = "How it Works";
   let steps = [
     {
@@ -63,9 +64,96 @@
         "The Fake Tweet Generator allows you to manually set simulated engagement metrics for each tweet, such as retweets and likes. This feature helps visualize potential social engagement, although it does not predict actual engagement. It's a useful tool for crafting tweets and seeing how they would look in a live environment.",
     },
   ];
+  function dark() {
+    //3c9aff
+    const card = document.querySelector('.tweet-generator');
+    const reset = document.querySelector('.reset-text');
+    const likeCount = document.querySelector('.like-count');
+    const retweetCount = document.querySelector('.retweet-count');
+    const bookmarkCount = document.querySelector('.bookmark-count');
+    const quotesCounts = document.querySelector('.quotes-count');
+    const viewsCounts = document.querySelector('.view-count');
+    const bg = document.querySelector('.Dark')
+    const bg1 = document.querySelector('.Light')
+    const bg2 = document.querySelector('.Dim')
+    card.style.backgroundColor = '#111419';
+    likeCount.style.color = 'white';
+    retweetCount.style.color = 'white';
+    bookmarkCount.style.color = 'white';
+    viewsCounts.style.color = 'white';
+    quotesCounts.style.color = 'white';
+    card.style.color = 'white';
+    reset.style.color = 'white';
+    bg.style.backgroundColor = '#3c9aff'
+    bg.style.color = 'white'
+    bg1.style.backgroundColor = 'white'
+    bg1.style.color = 'black'
+    bg2.style.backgroundColor = 'white'
+    bg2.style.color = 'black'
+  }
+  function light() {
+    const card = document.querySelector('.tweet-generator');
+    const reset = document.querySelector('.reset-text');
+    const likeCount = document.querySelector('.like-count');
+    const retweetCount = document.querySelector('.retweet-count');
+    const bookmarkCount = document.querySelector('.bookmark-count');
+    const quotesCounts = document.querySelector('.quotes-count');
+    const viewsCounts = document.querySelector('.view-count');
+    const bg = document.querySelector('.Light')
+    const bg1 = document.querySelector('.Dark')
+    const bg2 = document.querySelector('.Dim')
+    card.style.backgroundColor = 'white';
+    likeCount.style.color = 'black';
+    retweetCount.style.color = 'black';
+    bookmarkCount.style.color = 'black';
+    viewsCounts.style.color = 'black';
+    quotesCounts.style.color = 'black';
+    card.style.color = 'black';
+    reset.style.color = 'black';
+    bg.style.backgroundColor = '#3c9aff'
+    bg.style.color = 'white'
+    bg1.style.backgroundColor = 'white'
+    bg1.style.color = 'black'
+    bg2.style.backgroundColor = 'white'
+    bg2.style.color = 'black'
+  }
+  function dim() {
+    const card = document.querySelector('.tweet-generator');
+    const reset = document.querySelector('.reset-text');
+    const likeCount = document.querySelector('.like-count');
+    const retweetCount = document.querySelector('.retweet-count');
+    const bookmarkCount = document.querySelector('.bookmark-count');
+    const quotesCounts = document.querySelector('.quotes-count');
+    const viewsCounts = document.querySelector('.view-count');
+    const bg = document.querySelector('.Dim')
+    const bg1 = document.querySelector('.Light')
+    const bg2 = document.querySelector('.Dark')
+    card.style.backgroundColor = '#232833';
+    likeCount.style.color = 'white';
+    retweetCount.style.color = 'white';
+    bookmarkCount.style.color = 'white';
+    viewsCounts.style.color = 'white';
+    quotesCounts.style.color = 'white';
+    card.style.color = 'white';
+    reset.style.color = 'white';
+    bg.style.backgroundColor = '#3c9aff'
+    bg.style.color = 'white'
+    bg1.style.backgroundColor = 'white'
+    bg1.style.color = 'black'
+    bg2.style.backgroundColor = 'white'
+    bg2.style.color = 'black'
+  }
+  function downloadDivAsImage() {
+    const divToDownload = document.querySelector('.tweet-generator');
+    html2canvas(divToDownload).then((canvas) => {
+      const link = document.createElement('a');
+      link.download = 'tweet-generator.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+  }
 </script>
-<div class="card gap-16 items-center mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 overflow-hidden rounded-lg"
->
+<div class="card gap-16 items-center mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 overflow-hidden rounded-lg">
   <div class="container">
     <div class="side-container">
       <div class="title">
@@ -121,13 +209,10 @@
               <div class="twitter-header">
                 <div class="generator-avatar">
                   <div class="avatar-wrapper">
-                    <span data-loaded=""
-                      ><img
-                        class="avatar"
-                        src="https://pbs.twimg.com/media/Efu_ULtXsAAz1Sl?format=jpg&name=large"
-                        alt=""
-                      /></span
-                    ><svg
+                    <span data-loaded="">
+                      <img class="avatar" src="/avatr.jpg" alt=""/>
+                    </span> 
+                    <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
                       height="24"
@@ -163,16 +248,14 @@
                       aria-haspopup="menu"
                       aria-controls="menu-list"
                     >
-                      <svg
-                        fill="#3c9aff"
-                        viewBox="0 0 22 22"
-                        focusable="false"
-                        class="chakra-icon"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M20.396 11a3.487 3.487 0 00-2.008-3.062 3.474 3.474 0 00-.742-3.584 3.474 3.474 0 00-3.584-.742A3.468 3.468 0 0011 1.604a3.463 3.463 0 00-3.053 2.008 3.472 3.472 0 00-1.902-.14c-.635.13-1.22.436-1.69.882a3.461 3.461 0 00-.734 3.584A3.49 3.49 0 001.604 11a3.496 3.496 0 002.017 3.062 3.471 3.471 0 00.733 3.584 3.49 3.49 0 003.584.742A3.487 3.487 0 0011 20.396a3.476 3.476 0 003.062-2.007 3.335 3.335 0 004.326-4.327A3.487 3.487 0 0020.396 11zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z"
-                        ></path>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+
+                      <defs>
+                      </defs>
+                      <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+                        <path d="M 30.091 10.131 L 30.091 10.131 c 5.28 -13.046 23.695 -13.207 29.202 -0.255 l 0 0 l 0 0 c 12.959 -5.491 26.093 7.416 20.829 20.469 l 0 0 l 0 0 c 13.046 5.28 13.207 23.695 0.255 29.202 l 0 0 l 0 0 c 5.491 12.959 -7.416 26.093 -20.469 20.829 l 0 0 l 0 0 c -5.28 13.046 -23.695 13.207 -29.202 0.255 l 0 0 l 0 0 C 17.748 86.122 4.613 73.215 9.878 60.162 l 0 0 l 0 0 C -3.169 54.881 -3.33 36.467 9.623 30.96 l 0 0 l 0 0 C 4.131 18.001 17.038 4.866 30.091 10.131 L 30.091 10.131 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,150,241); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                        <polygon points="39.66,63.79 23.36,47.76 28.97,42.05 39.3,52.21 59.6,29.58 65.56,34.93 " style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform="  matrix(1 0 0 1 0 0) "/>
+                      </g>
                       </svg>
                     </button>
                   </div>
@@ -261,8 +344,7 @@
                       x2="12"
                       y1="3"
                       y2="15"
-                    ></line></svg
-                  >
+                    ></line></svg>
                   <p class="file-text">
                     Drag and drop or click here to add image
                   </p>
@@ -457,16 +539,9 @@
         <div class="theme-group">
           <p class="theme-label">Theme:</p>
           <div class="theme-options" role="radiogroup">
-            <div
-              value="Light"
-              name="theme"
-              class="edit-button theme-option Light"
-              data-checked=""
-            >
-              Light
-            </div>
-            <div value="Dark" name="theme" class="theme-option Dark">Dark</div>
-            <div value="Dim" name="theme" class="theme-option Dim">Dim</div>
+            <div value="Light" name="theme" class="edit-button theme-option Light" data-checked="" on:click={light}> Light </div>
+            <div value="Dark" name="theme" class="theme-option Dark" on:click={dark}>Dark</div>
+            <div value="Dim" name="theme" class="theme-option Dim" on:click={dim}>Dim</div>
           </div>
         </div>
         <div class="buttons-container">
@@ -483,7 +558,8 @@
               ></path>
             </svg>
           </div>
-          <div class="edit-button button download-button">
+          <!-- svelte-ignore a11y-click-events-have-key-events -->
+          <div class="edit-button button download-button" on:click={downloadDivAsImage}>
             <svg
               class="chakra-icon"
               fill="currentColor"
