@@ -1,4 +1,310 @@
 <script>
+  import html2canvas from "html2canvas";
+  let pagetitle = "How it Works";
+  let steps = [
+    {
+      title:
+        "Create fake tweets that are indistinguishable from the real ones.",
+      content:
+        "Whether you want to pull a prank or see what it feels like when you get a million views on your tweet, our fake tweet creator is here to help.",
+      image: "/Burger.png",
+      alignLeft: true,
+    },
+    {
+      title:
+        "Customize your tweet with any profile pic, handle, text and media",
+      content:
+        "Personalize your tweet with any profile picture, username, and content. Our intuitive generator lets you craft tweets as if they were posted from any account.",
+      image: "/elonmusk.png",
+      alignLeft: false,
+    },
+    {
+      title: "Simulate Engagement",
+      content:
+        "Add elements like likes, retweets, quote tweets, bookmarks, and views to make your tweet look authentic.",
+      image: "/engage.svg",
+      alignLeft: true,
+    },
+  ];
+
+  let enhancesteps = [
+    {
+      additional: [
+        "Create high-engagement content in seconds",
+        "Automate your posting schedule",
+        "Interact with key accounts effortlessly",
+        "Track and analyze your performance",
+      ],
+    },
+  ];
+
+  let faqItems = [
+    {
+      question: "Q1 : What is the Fake Tweet Generator used for?",
+      answer:
+        "The Fake Tweet Generator is a tool designed to simulate fake tweets. It allows you to create tweets as if they were posted on Twitter. It includes details like the user handle, tweet content, hashtags, and even engagement metrics like retweets and likes.",
+    },
+    {
+      question: "Q2 : Do I need to sign in with my Twitter account?",
+      answer:
+        "No, you don't need to sign in with your Twitter account to use the Fake Tweet Generator. The tool operates independently of your Twitter account and simply creates visual representations of potential tweets.",
+    },
+    {
+      question:
+        "Q3 : How are engagement metrics simulated on fake Tweet Generator?",
+      answer:
+        "The Fake Tweet Generator allows you to manually set simulated engagement metrics for each tweet, such as retweets and likes. This feature helps visualize potential social engagement, although it does not predict actual engagement. It's a useful tool for crafting tweets and seeing how they would look in a live environment.",
+    },
+  ];
+
+  // input changes
+  let dateTime = new Date().toISOString().slice(0, 16);
+  let viewCount = 0;
+  let retweetCount = 0;
+  let quoteCount = 0;
+  let likeCount = 0;
+  let bookmarkCount = 0;
+  let tweetTitle = "Tweet Generator";
+  let tweetHandle = "@tweetgenerator";
+  let tweetContent = `
+    Hey there, Welcome to tweet generator ✨
+
+    - You can edit anything you want by clicking on them
+    - Move to the preview mode from the top bar
+    - Checkout the preview and download your image in one-click
+  `;
+  let tweetImage = "";
+
+  function handleTitleEdit() {
+    const inputElement = document.querySelector(".tweet-genertor-title");
+    inputElement.hidden = !inputElement.hidden;
+    if (!inputElement.hidden) {
+      inputElement.focus();
+    }
+  }
+
+  function handleHandleEdit() {
+    const inputElement = document.querySelector(".tweet-subheading");
+    inputElement.hidden = !inputElement.hidden;
+    if (!inputElement.hidden) {
+      inputElement.focus();
+    }
+  }
+
+  function handleContentEdit() {
+    const inputElement = document.querySelector(".tweet-text-textarea");
+    inputElement.hidden = !inputElement.hidden;
+    if (!inputElement.hidden) {
+      inputElement.focus();
+    }
+  }
+
+  function handleImageUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        tweetImage = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  function handleDateClick() {
+    const inputElement = document.querySelector(".date-edit");
+    inputElement.hidden = !inputElement.hidden;
+    if (!inputElement.hidden) {
+      inputElement.focus();
+    }
+  }
+
+  function handleViewClick() {
+    const inputElement = document.querySelector(".view-input");
+    inputElement.hidden = !inputElement.hidden;
+    if (!inputElement.hidden) {
+      inputElement.focus();
+    }
+  }
+
+  function handleRetweetClick() {
+    const inputElement = document.querySelector(".retweet-input");
+    inputElement.hidden = !inputElement.hidden;
+    if (!inputElement.hidden) {
+      inputElement.focus();
+    }
+  }
+
+  function handleQuoteClick() {
+    const inputElement = document.querySelector(".quotes-input");
+    inputElement.hidden = !inputElement.hidden;
+    if (!inputElement.hidden) {
+      inputElement.focus();
+    }
+  }
+
+  function handleLikeClick() {
+    const inputElement = document.querySelector(".like-input");
+    inputElement.hidden = !inputElement.hidden;
+    if (!inputElement.hidden) {
+      inputElement.focus();
+    }
+  }
+
+  function handleBookmarkClick() {
+    const inputElement = document.querySelector(".bookmark-input");
+    inputElement.hidden = !inputElement.hidden;
+    if (!inputElement.hidden) {
+      inputElement.focus();
+    }
+  }
+
+  function updateDateTime(event) {
+    dateTime = event.target.value;
+  }
+
+  function updateViewCount(event) {
+    viewCount = event.target.value;
+  }
+
+  function updateRetweetCount(event) {
+    retweetCount = event.target.value;
+  }
+
+  function updateQuoteCount(event) {
+    quoteCount = event.target.value;
+  }
+
+  function updateLikeCount(event) {
+    likeCount = event.target.value;
+  }
+
+  function updateBookmarkCount(event) {
+    bookmarkCount = event.target.value;
+  }
+  function dark() {
+    //3c9aff
+    const card = document.querySelector(".tweet-generator");
+    const reset = document.querySelector(".reset-text");
+    const likeCount = document.querySelector(".like-count");
+    const retweetCount = document.querySelector(".retweet-count");
+    const bookmarkCount = document.querySelector(".bookmark-count");
+    const quotesCounts = document.querySelector(".quotes-count");
+    const viewsCounts = document.querySelector(".view-count");
+    const bg = document.querySelector(".Dark");
+    const bg1 = document.querySelector(".Light");
+    const bg2 = document.querySelector(".Dim");
+    card.style.backgroundColor = "#111419";
+    likeCount.style.color = "white";
+    retweetCount.style.color = "white";
+    bookmarkCount.style.color = "white";
+    viewsCounts.style.color = "white";
+    quotesCounts.style.color = "white";
+    card.style.color = "white";
+    reset.style.color = "white";
+    bg.style.backgroundColor = "#3c9aff";
+    bg.style.color = "white";
+    bg1.style.backgroundColor = "white";
+    bg1.style.color = "black";
+    bg2.style.backgroundColor = "white";
+    bg2.style.color = "black";
+  }
+  function light() {
+    const card = document.querySelector(".tweet-generator");
+    const reset = document.querySelector(".reset-text");
+    const likeCount = document.querySelector(".like-count");
+    const retweetCount = document.querySelector(".retweet-count");
+    const bookmarkCount = document.querySelector(".bookmark-count");
+    const quotesCounts = document.querySelector(".quotes-count");
+    const viewsCounts = document.querySelector(".view-count");
+    const bg = document.querySelector(".Light");
+    const bg1 = document.querySelector(".Dark");
+    const bg2 = document.querySelector(".Dim");
+    card.style.backgroundColor = "white";
+    likeCount.style.color = "black";
+    retweetCount.style.color = "black";
+    bookmarkCount.style.color = "black";
+    viewsCounts.style.color = "black";
+    quotesCounts.style.color = "black";
+    card.style.color = "black";
+    reset.style.color = "black";
+    bg.style.backgroundColor = "#3c9aff";
+    bg.style.color = "white";
+    bg1.style.backgroundColor = "white";
+    bg1.style.color = "black";
+    bg2.style.backgroundColor = "white";
+    bg2.style.color = "black";
+  }
+  function dim() {
+    const card = document.querySelector(".tweet-generator");
+    const reset = document.querySelector(".reset-text");
+    const likeCount = document.querySelector(".like-count");
+    const retweetCount = document.querySelector(".retweet-count");
+    const bookmarkCount = document.querySelector(".bookmark-count");
+    const quotesCounts = document.querySelector(".quotes-count");
+    const viewsCounts = document.querySelector(".view-count");
+    const bg = document.querySelector(".Dim");
+    const bg1 = document.querySelector(".Light");
+    const bg2 = document.querySelector(".Dark");
+    card.style.backgroundColor = "#232833";
+    likeCount.style.color = "white";
+    retweetCount.style.color = "white";
+    bookmarkCount.style.color = "white";
+    viewsCounts.style.color = "white";
+    quotesCounts.style.color = "white";
+    card.style.color = "white";
+    reset.style.color = "white";
+    bg.style.backgroundColor = "#3c9aff";
+    bg.style.color = "white";
+    bg1.style.backgroundColor = "white";
+    bg1.style.color = "black";
+    bg2.style.backgroundColor = "white";
+    bg2.style.color = "black";
+  }
+  function downloadDivAsImage() {
+    const divToDownload = document.querySelector(".tweet-generator");
+    html2canvas(divToDownload).then((canvas) => {
+      const link = document.createElement("a");
+      link.download = "tweet-generator.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    });
+  }
+  // input changes//
+
+  // image
+  let imageUrl = "/avatr.jpg";
+  let fileInput;
+
+  function handleImageChange(event) {
+    const file = event.target.files[0];
+    if (file) {
+      imageUrl = URL.createObjectURL(file);
+    }
+  }
+  // image
+  // reset
+  function resetValuesAndTheme() {
+    dateTime = new Date().toISOString().slice(0, 16);
+    viewCount = 0;
+    retweetCount = 0;
+    quoteCount = 0;
+    likeCount = 0;
+    bookmarkCount = 0;
+    tweetTitle = "Tweet Generator";
+    tweetHandle = "@tweetgenerator";
+    tweetContent = `
+      Hey there, Welcome to tweet generator ✨
+
+      - You can edit anything you want by clicking on them
+      - Move to the preview mode from the top bar
+      - Checkout the preview and download your image in one-click
+    `;
+    tweetImage = "";
+    imageUrl = "/avatr.jpg";
+    fileInput.value = "";
+    light();
+  }
+  // reset
 </script>
 
 <head>
@@ -9,7 +315,6 @@
     rel="stylesheet"
   />
 </head>
-
 <div
   class="card gap-16 items-center mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 overflow-hidden rounded-lg"
 >
@@ -30,8 +335,8 @@
           ></circle><path
             fill="#fff"
             d="M485.39,356.79l230.07,307.62L483.94,914.52h52.11l202.7-218.98l163.77,218.98h177.32
-          L836.82,589.6l215.5-232.81h-52.11L813.54,558.46L662.71,356.79H485.39z M562.02,395.17h81.46l359.72,480.97h-81.46L562.02,395.17
-          z"
+			L836.82,589.6l215.5-232.81h-52.11L813.54,558.46L662.71,356.79H485.39z M562.02,395.17h81.46l359.72,480.97h-81.46L562.02,395.17
+			z"
             transform="translate(52.39 -25.059)"
           ></path></svg
         >
@@ -66,15 +371,18 @@
           <div class="generator">
             <div class="gen-header">
               <div class="twitter-header">
+                <!--image avatar-->
                 <div class="generator-avatar">
+                  <input
+                    type="file"
+                    class="files"
+                    accept=".jpg, .jpeg, .png"
+                    on:change={handleImageChange}
+                    bind:this={fileInput}
+                  />
                   <div class="avatar-wrapper">
-                    <span data-loaded=""
-                      ><img
-                        class="avatar"
-                        src="https://pbs.twimg.com/media/Efu_ULtXsAAz1Sl?format=jpg&name=large"
-                        alt=""
-                      /></span
-                    ><svg
+                    <img class="avatar" src={imageUrl} alt="" />
+                    <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
                       height="24"
@@ -85,23 +393,28 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       class="overlay-icon"
+                      focusable="false"
+                      ><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                      ></path><polyline points="17 8 12 3 7 8"></polyline><line
+                        x1="12"
+                        x2="12"
+                        y1="3"
+                        y2="15"
+                      ></line></svg
                     >
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                      ></path>
-                      <polyline points="17 8 12 3 7 8"></polyline>
-                      <line x1="12" x2="12" y1="3" y2="15"></line>
-                    </svg>
                   </div>
                 </div>
+                <!--image avatar-->
+
                 <div class="gen-title">
                   <div class="editable">
                     <span class="editable_preview">Tweet Generator</span>
                     <!-- INPUT AREA WHEN TWEET GENERATOR IS CLICKED USING JAVASCRIPT-->
                     <!-- <input
-                    value="Tweet Generator"
-                    placeholder="Tweet Generator"
-                    class="tweet-genertor-title"
-                  /> -->
+					  value="Tweet Generator"
+					  placeholder="Tweet Generator"
+					  class="tweet-genertor-title"
+					/> -->
                     <button
                       type="button"
                       class="logo-button"
@@ -129,16 +442,19 @@
                       >
                       <!--INPUT AREA WHEN TWEET GENERATOR IS CLICKED USING JAVASCRIPT  -->
                       <!-- <input
-                      value="@tweetgenerator"
-                      placeholder="@tweetgenerator"
-                      class="tweet-subheading"
-                    /> -->
+						value="@tweetgenerator"
+						placeholder="@tweetgenerator"
+						class="tweet-subheading"
+					  /> -->
                     </div>
                   </div>
                 </div>
               </div>
               <div class="reset">
-                <button type="button" class="reset-button"
+                <button
+                  type="button"
+                  class="reset-button"
+                  on:click={resetValuesAndTheme}
                   ><span class="reset-button__icon"
                     ><svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -174,15 +490,15 @@
               </div>
               <!--INPUT AREA WHEN TWEET GENERATOR IS CLICKED USING JAVASCRIPT  -->
               <!-- <div class="tweet-text-wrapper">
-                <textarea
-                  class="tweet-text-textarea"
-                  placeholder="Hey there, Welcome to tweet generator ✨
-
-- You can edit anything you want by clicking on them
-- Move to the preview mode from the top bar
-- Checkout the preview and download your image in one-click"
-                ></textarea>
-              </div> -->
+				  <textarea
+					class="tweet-text-textarea"
+					placeholder="Hey there, Welcome to tweet generator ✨
+  
+  - You can edit anything you want by clicking on them
+  - Move to the preview mode from the top bar
+  - Checkout the preview and download your image in one-click"
+				  ></textarea>
+				</div> -->
             </div>
             <div>
               <div class="file-input">
@@ -218,100 +534,143 @@
             </div>
             <div class="date-views">
               <div class="date-editable">
-                <div class="date-area">
-                  <!--INPUT AREA WHEN TWEET GENERATOR IS CLICKED USING JAVASCRIPT  -->
-                  <!-- <input
+                <div class="date-area edit-area">
+                  <input
                     type="datetime-local"
-                    hidden=""
-                    class="date-edit"
-                    value="2024-06-28T08:35"
-                  /> -->
-                  <div aria-label="Edit" type="button" class="date">
-                    <p class="date-text">2:05 PM · Jun 28, 2024</p>
+                    class="date-edit edit-input"
+                    bind:value={dateTime}
+                    on:input={updateDateTime}
+                    hidden
+                  />
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <div
+                    aria-label="Edit"
+                    type="button"
+                    class="date"
+                    on:click={handleDateClick}
+                  >
+                    <p class="date-text">
+                      {new Date(dateTime).toLocaleString("en-US", {
+                        hour: "numeric",
+                        minute: "numeric",
+                        hour12: true,
+                      })} · {new Date(dateTime).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      })}
+                    </p>
                   </div>
                 </div>
               </div>
+
               <div class="views-editable">
-                <div class="view-area">
-                  <div class="view-edit">
-                    <!--INPUT AREA WHEN TWEET GENERATOR IS CLICKED USING JAVASCRIPT  -->
-                    <!-- <input
-                      type="number"
-                      min="0"
-                      hidden=""
-                      class="view"
-                      value="0"
-                    /> -->
-                    <div aria-label="Edit" type="button" class="view-div">
-                      <p class="view-count">0</p>
-                      <p class="view-text">Views</p>
-                    </div>
+                <div class="view-area edit-area">
+                  <input
+                    type="number"
+                    min="0"
+                    class="view-input edit-input"
+                    bind:value={viewCount}
+                    on:input={updateViewCount}
+                    hidden
+                  />
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <div
+                    aria-label="Edit"
+                    type="button"
+                    class="view-div"
+                    on:click={handleViewClick}
+                  >
+                    <p class="view-count">{viewCount}</p>
+                    <p class="view-text">Views</p>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="count-tab">
-              <div class="retweet-area">
-                <div class="retweet-edit">
-                  <!-- <input
-                      type="number"
-                      min="0"
-                      hidden=""
-                      class="retweet-input"
-                      value="0"
-                    /> -->
-                  <div aria-label="Edit" type="button" class="retweet-div">
-                    <p class="retweet-count">0</p>
-                    <p class="retweet-text">Retweets</p>
-                  </div>
+              <div class="retweet-area edit-area">
+                <input
+                  type="number"
+                  min="0"
+                  class="retweet-input edit-input"
+                  bind:value={retweetCount}
+                  on:input={updateRetweetCount}
+                  hidden
+                />
+                <!-- svelte-ignore a11y-click-events-have-key-events -->
+                <div
+                  aria-label="Edit"
+                  type="button"
+                  class="retweet-div"
+                  on:click={handleRetweetClick}
+                >
+                  <p class="retweet-count">{retweetCount}</p>
+                  <p class="retweet-text">Retweets</p>
                 </div>
               </div>
-              <div class="quotes-area">
-                <div class="quotes-edit">
-                  <!-- <input
-                    type="number"
-                    min="0"
-                    hidden=""
-                    class="quotes-input"
-                    value="0"
-                  /> -->
-                  <div aria-label="Edit" type="button" class="quotes-div">
-                    <p class="quotes-count">0</p>
-                    <p class="quotes-text">Quotes</p>
-                  </div>
+
+              <div class="quotes-area edit-area">
+                <input
+                  type="number"
+                  min="0"
+                  class="quotes-input edit-input"
+                  bind:value={quoteCount}
+                  on:input={updateQuoteCount}
+                  hidden
+                />
+                <div
+                  aria-label="Edit"
+                  type="button"
+                  class="quotes-div"
+                  on:click={handleQuoteClick}
+                >
+                  <p class="quotes-count">{quoteCount}</p>
+                  <p class="quotes-text">Quotes</p>
                 </div>
               </div>
-              <div class="like-area">
-                <div class="like-edit">
-                  <!-- <input
-                    type="number"
-                    min="0"
-                    hidden=""
-                    class="like-input"
-                    value="0"
-                  /> -->
-                  <div aria-label="Edit" type="button" class="like-div">
-                    <p class="like-count">0</p>
-                    <p class="like-text">Likes</p>
-                  </div>
+
+              <div class="like-area edit-area">
+                <input
+                  type="number"
+                  min="0"
+                  class="like-input edit-input"
+                  bind:value={likeCount}
+                  on:input={updateLikeCount}
+                  hidden
+                />
+                <div
+                  aria-label="Edit"
+                  type="button"
+                  class="like-div"
+                  on:click={handleLikeClick}
+                >
+                  <p class="like-count">{likeCount}</p>
+                  <p class="like-text">Likes</p>
                 </div>
               </div>
-              <div class="bookmark-area">
-                <div class="bookmark-edit">
-                  <!-- <input
-                    type="number"
-                    min="0"
-                    hidden=""
-                    class="bookmark-input"
-                    value="0"
-                  /> -->
-                  <div aria-label="Edit" type="button" class="bookmark-div">
-                    <p class="bookmark-count">0</p>
-                    <p class="bookmark-text">Bookmarks</p>
-                  </div>
+
+              <div class="bookmark-area edit-area">
+                <input
+                  type="number"
+                  min="0"
+                  class="bookmark-input edit-input"
+                  bind:value={bookmarkCount}
+                  on:input={updateBookmarkCount}
+                  hidden
+                />
+                <div
+                  aria-label="Edit"
+                  type="button"
+                  class="bookmark-div"
+                  on:click={handleBookmarkClick}
+                >
+                  <p class="bookmark-count">{bookmarkCount}</p>
+                  <p class="bookmark-text">Bookmarks</p>
                 </div>
               </div>
             </div>
+
             <div class="icon-container">
               <div class="icon-area">
                 <svg
@@ -409,11 +768,26 @@
               name="theme"
               class="edit-button theme-option Light"
               data-checked=""
+              on:click={light}
             >
               Light
             </div>
-            <div value="Dark" name="theme" class="theme-option Dark">Dark</div>
-            <div value="Dim" name="theme" class="theme-option Dim">Dim</div>
+            <div
+              value="Dark"
+              name="theme"
+              class="theme-option Dark"
+              on:click={dark}
+            >
+              Dark
+            </div>
+            <div
+              value="Dim"
+              name="theme"
+              class="theme-option Dim"
+              on:click={dim}
+            >
+              Dim
+            </div>
           </div>
         </div>
         <div class="buttons-container">
@@ -430,7 +804,10 @@
               ></path>
             </svg>
           </div>
-          <div class="edit-button button download-button">
+          <div
+            class="edit-button button download-button"
+            on:click={downloadDivAsImage}
+          >
             <svg
               class="chakra-icon"
               fill="currentColor"
@@ -452,10 +829,97 @@
   </div>
   <!--container-->
 </div>
+<div class="card-doc mx-auto max-w-screen-xl rounded-lg shadow-lg bg-white p-8">
+  <h1 class="text-3xl font-bold mb-10 text-center">{pagetitle}</h1>
+  <div class="documentation">
+    {#each steps as { title, content, image, alignLeft }, i}
+      <div class="step {alignLeft ? 'left-align' : 'right-align'}">
+        {#if alignLeft}
+          <div class="text-content">
+            <h2 class="text-2xl font-semibold mb-4">{title}</h2>
+            <h3 class="text-lg mb-6">{content}</h3>
+          </div>
+          <div class="image-container">
+            <img src={image} alt="Burger Illustration" />
+          </div>
+        {:else}
+          <div class="image-container">
+            <img src={image} alt="Elon musk illustration" />
+          </div>
+          <div class="text-content">
+            <h2 class="text-2xl font-semibold mb-4">{title}</h2>
+            <h3 class="text-lg mb-6">{content}</h3>
+          </div>
+        {/if}
+      </div>
+    {/each}
 
-<!--card-->
+    <div class="dark-frame">
+      <div class="enhance-twitter-section">
+        <h3 class="text-2xl font-semibold my-4 text-white">
+          Enhance Your Twitter Presence
+        </h3>
+        <p class="text-lg mb-4 text-white">
+          Discover our AI-powered suite of tools designed to supercharge your
+          Twitter growth.
+        </p>
+        <ul class="list-disc list-inside text-lg mb-6">
+          {#each enhancesteps[0].additional as item}
+            <li id="item" class="text-white">{item}</li>
+          {/each}
+        </ul>
+      </div>
+      <div class="image-container">
+        <img
+          src="/tweets.png"
+          alt="AI Twitter Tool"
+          class="rounded-lg shadow-md"
+        />
+      </div>
+    </div>
+
+    <div class="faq-section mt-8">
+      <h3 class="text-2xl font-bold mb-6">Frequently Asked Questions</h3>
+      {#each faqItems as { question, answer }}
+        <div class="mb-6">
+          <h4 class="text-xl font-medium mb-1">{question}</h4>
+          <p class="text-sm mb-4">{answer}</p>
+        </div>
+      {/each}
+    </div>
+  </div>
+</div>
 
 <style>
+  .edit-area {
+    display: flex;
+    align-items: center;
+  }
+
+  .edit-input {
+    margin-left: 10px;
+    width: 150px;
+  }
+
+  .view-input,
+  .retweet-input,
+  .quotes-input,
+  .like-input,
+  .bookmark-input {
+    margin-left: 10px;
+    width: 50px;
+  }
+
+  .tweet-genertor-title,
+  .tweet-subheading,
+  .tweet-text-textarea {
+    margin-left: 10px;
+    width: 100%;
+  }
+
+  .tweet-text-textarea {
+    height: 100px;
+  }
   .theme-container,
   .container,
   .right-container {
@@ -770,9 +1234,11 @@
   }
 
   .avatar-wrapper {
-    position: relative;
-    width: fit-content;
-    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
   }
 
   .tweet-container {
@@ -799,22 +1265,7 @@
     pointer-events: none;
     z-index: 5;
   }
-
-  .avatar-wrapper::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 50px;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .avatar-wrapper:hover::after,
-  .avatar-wrapper:hover .overlay-icon {
+  .generator-avatar:hover .overlay-icon {
     opacity: 1;
   }
 
@@ -919,5 +1370,95 @@
       max-width: 100%;
       padding: 10px;
     }
+  }
+  .card-doc {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #f9fafb;
+    border-radius: 10px;
+  }
+  .documentation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .step {
+    width: 100%;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+  }
+  .left-align .text-content {
+    order: 1;
+  }
+  .left-align .image-container {
+    order: 2;
+    margin-left: 20px;
+  }
+  .right-align .text-content {
+    order: 2;
+    margin-left: 20px;
+  }
+  .right-align .image-container {
+    order: 1;
+  }
+  .dark-frame {
+    background-color: #1a202c;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+  }
+  .enhance-twitter-section {
+    max-width: 50%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    color: white;
+  }
+  .image-container {
+    flex-shrink: 0;
+    width: 50%;
+    color: white;
+  }
+  .image-container img {
+    max-width: 100%;
+    height: auto;
+  }
+  .faq-section {
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: left;
+  }
+  h2,
+  h4 {
+    margin-top: 1em;
+    color: #2d3748;
+  }
+  p,
+  ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  .card {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 0;
+    height: auto;
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 5px 5px 10px rgba(126, 125, 125, 0.169);
+  }
+
+  .card-doc {
+    margin-top: -20px;
+    padding-top: 40px;
+    border-radius: 0 0 10px 10px;
+    background-color: white;
+    box-shadow: 5px 5px 10px rgba(126, 125, 125, 0.169);
   }
 </style>
