@@ -340,7 +340,7 @@
                     <span data-loaded=""
                       ><img
                         class="avatar"
-                        src="/avatr.jpg/avatr.jpg"
+                        src="/avatr.jpg"
                         alt=""
                       /></span
                     ><svg
