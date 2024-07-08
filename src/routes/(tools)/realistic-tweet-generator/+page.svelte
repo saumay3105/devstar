@@ -457,7 +457,8 @@
     rel="stylesheet"
   />
 </head>
-<div class="card rounded-lg">
+
+<div class="card">
   <div class="tweet-section">
     <div class="container">
       <div class="side-container">
@@ -484,7 +485,7 @@
           <span class="title-head">CraftLab Tweet Generator</span>
         </div>
         <div class="description">
-          <h1 class="">Tweet Generator</h1>
+          <h1 class="ml-4">Tweet Generator</h1>
           <p class="chakra-text-2">
             Generate mock screenshots of tweets easily.
           </p>
@@ -909,15 +910,25 @@
                           >
                             {tweetTitle}
                           </span>
-
                           <button
                             type="button"
-                            class="no-button"
+                            class="logo-button no-border"
                             id="menu-button"
                             aria-expanded="false"
                             aria-haspopup="menu"
                             aria-controls="menu-list"
                           >
+                            <svg
+                              fill="#3c9aff"
+                              viewBox="0 0 22 22"
+                              focusable="false"
+                              class="chakra-icon"
+                              aria-hidden="true"
+                            >
+                              <path
+                                d="M20.396 11a3.487 3.487 0 00-2.008-3.062 3.474 3.474 0 00-.742-3.584 3.474 3.474 0 00-3.584-.742A3.468 3.468 0 0011 1.604a3.463 3.463 0 00-3.053 2.008 3.472 3.472 0 00-1.902-.14c-.635.13-1.22.436-1.69.882a3.461 3.461 0 00-.734 3.584A3.49 3.49 0 001.604 11a3.496 3.496 0 002.017 3.062 3.471 3.471 0 00.733 3.584 3.49 3.49 0 003.584.742A3.487 3.487 0 0011 20.396a3.476 3.476 0 003.062-2.007 3.335 3.335 0 004.326-4.327A3.487 3.487 0 0020.396 11zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z"
+                              ></path>
+                            </svg>
                           </button>
                         </div>
                         <div class="tweet-editable">
@@ -1218,14 +1229,14 @@
   </div>
   <div class="card-doc bg-white">
     <div class="card-doc-section">
-      <h1 class="text-3xl font-bold mb-10 text-center">{pagetitle}</h1>
+      <h1 class="text-3xl font-bold mb-10 mt-10 text-center">{pagetitle}</h1>
       <div class="documentation">
         {#each steps as { title, content, image, alignLeft }, i}
           <div class="step {alignLeft ? 'left-align' : 'right-align'}">
             {#if alignLeft}
               <div class="text-content">
-                <h2 class="text-2xl font-semibold mb-4">{title}</h2>
-                <h3 class="text-lg mb-6">{content}</h3>
+                <h2 class="text-2xl font-semibold mb-4 ml-10">{title}</h2>
+                <h3 class="text-lg mb-6 ml-10">{content}</h3>
               </div>
               <div class="image-container">
                 <img src={image} alt="Burger Illustration" />
@@ -1235,8 +1246,8 @@
                 <img src={image} alt="Elon musk illustration" />
               </div>
               <div class="text-content">
-                <h2 class="text-2xl font-semibold mb-4">{title}</h2>
-                <h3 class="text-lg mb-6">{content}</h3>
+                <h2 class="text-2xl font-semibold mb-4 ml-7">{title}</h2>
+                <h3 class="text-lg mb-6 ml-7 mr-10">{content}</h3>
               </div>
             {/if}
           </div>
@@ -1244,14 +1255,14 @@
 
         <div class="dark-frame">
           <div class="enhance-twitter-section">
-            <h3 class="text-2xl font-semibold my-4 text-white">
+            <h3 class="text-2xl font-bold my-4 ml-5 text-white">
               Enhance Your Twitter Presence
             </h3>
-            <p class="text-lg mb-4 text-white">
+            <p class="text-lg mb-4 mr-5 text-white">
               Discover our AI-powered suite of tools designed to supercharge
               your Twitter growth.
             </p>
-            <ul class="list-disc list-inside text-lg mb-6">
+            <ul class="list-disc list-inside text-lg mb-6 font-semibold">
               {#each enhancesteps[0].additional as item}
                 <li id="item" class="text-white">{item}</li>
               {/each}
@@ -1267,11 +1278,13 @@
         </div>
 
         <div class="faq-section mt-8">
-          <h3 class="text-2xl font-bold mb-6">Frequently Asked Questions</h3>
+          <h3 class="text-3xl font-bold mb-8 text-center">
+            Frequently Asked Questions
+          </h3>
           {#each faqItems as { question, answer }}
             <div class="mb-6">
-              <h4 class="text-xl font-medium mb-1">{question}</h4>
-              <p class="text-sm mb-4">{answer}</p>
+              <h4 class="text-xl font-medium mb-1 ml-5 mr-10">{question}</h4>
+              <p class="text-md mb-10">{answer}</p>
             </div>
           {/each}
         </div>
@@ -1283,6 +1296,9 @@
 </div>
 
 <style>
+  .card {
+    border-radius: 15px;
+  }
   .disabled {
     pointer-events: none;
     opacity: 0.5;
@@ -1414,6 +1430,7 @@
     margin: 0 auto;
     margin-bottom: 20px;
     color: white;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
   .image-container {
     flex-shrink: 0;
@@ -1426,8 +1443,9 @@
   }
   .faq-section {
     max-width: 100%;
-    margin: 0 auto;
+    margin: 0 40px 100px 20px;
     text-align: left;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
   h2,
   h4 {
@@ -1457,8 +1475,11 @@
     justify-content: space-between;
     height: 100%;
   }
-
+  .container {
+    border-top-left-radius: 15px;
+  }
   .right-container {
+    border-top-right-radius: 15px;
     background-color: #edf2f7;
     box-shadow: -10px 0px 10px -10px rgba(0, 0, 0, 0.153);
   }
@@ -1506,19 +1527,7 @@
     display: flex;
     align-items: center;
   }
-  .no-button {
-    cursor: pointer;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 13px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    background: none;
-    border: none;
-    padding: 5px;
-    cursor: pointer;
-  }
+
   .theme-option,
   .button-copy {
     border: 1px solid #e6e8eb;
@@ -1721,21 +1730,18 @@
     cursor: pointer;
     border: 2px dashed lightgrey;
   }
-
+  .no-border {
+    border: 0px;
+  }
   .logo-button svg {
     width: 20px;
     height: 20px;
   }
-  .no-button svg {
-    width: 20px;
-    height: 20px;
-  }
+
   .logo-button:hover {
     background-color: #efefef;
   }
-  .no-button:hover {
-    background-color: transparent;
-  }
+
   .twitter-header,
   .gen-header {
     display: flex;
@@ -1878,6 +1884,8 @@
       min-width: 100vh;
     }
     .card-doc {
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
       display: grid;
       gap: 0;
       height: auto;
@@ -1892,11 +1900,18 @@
 
     .container,
     .right-container {
+      border-top-right-radius: 0px;
       width: 100%;
       max-width: 100%;
       padding: 10px;
     }
+    .container {
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
     .card-doc {
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
       max-width: 100vw;
     }
   }
